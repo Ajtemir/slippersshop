@@ -1,0 +1,9 @@
+<div class="col-lg-6 col-sm-5 wow fadeInUp delay-05s">
+    <div class="form">
+        <form action="" method="post">
+            {{ form.as_p }}
+            {% csrf_token %}
+            <button class="input-btn" type='submit'>{{ button }}</button>
+        </form>
+    </div>
+</div>

@@ -66,7 +66,11 @@
 				<li><a href="{% url 'shop:optom' %}">В оптом</a></li>
 				<li class="small-logo"><a href="#header"><img src="{% static 'img/small-logo.png' %}" alt=""></a></li>
 <!--				<li><a href="#client">Зарегистроваться</a></li>-->
-				<li><a href="#team">Войти</a></li>
+				{% if user.is_authenticated %}
+				<li><a href="{% url 'user:logout' %}">Выйти</a></li>
+				{% else %}
+				<li><a href="{% url 'user:login' %}">Войти</a></li>
+				{% endif %}
 				<li>
 					{% with total_items=cart|length %}
 					{% if cart|length > 0 %}

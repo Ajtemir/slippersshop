@@ -25,5 +25,6 @@ urlpatterns = [
     path('', views.index, name='index'),
     path('shop/', include(('shops.urls', 'shop'))),
     path('cart/', include(('cart.urls', 'cart'))),
+    path('user/', include(('users.urls', 'user'))),
 
-] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+              ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

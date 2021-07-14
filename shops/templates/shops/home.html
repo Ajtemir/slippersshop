@@ -25,24 +25,26 @@
 				<a href="{{ product.img.url }}"><img src="{{MEDIA_URL}}{{ product.img }}" alt=""></a>
 				<h3>{{ product.name }}</h3>
 				<p>Цена: {{ product.price }} сом</p>
+
 			</div>
+			<a href="{{ product.get_absolute_url }}">1</a>
 			{% elif product.group == 'sandals' %}
 			<div class="Portfolio-box webdesign">
-				<a href="img/Portfolio-pic2.jpg"><img src="{{ product.img.url }}" alt=""></a>
+				<a href="{{ product.img.url }}"><img src="{{ product.img.url }}" alt=""></a>
 				<h3>{{ product.name }}</h3>
 				<p>Цена: {{ product.price }} сом</p>
 			</div>
 			{% elif product.group == 'slippers' %}
 			<div class=" Portfolio-box branding">
-				<a href="img/Portfolio-pic3.jpg"><img src="{{ product.img.url }}" alt=""></a>
+				<a href="{{ product.img.url }}"><img src="{{ product.img.url }}" alt=""></a>
 				<h3>{{ product.name }}</h3>
 				<p>Цена: {{ product.price }} сом</p>
 			</div>
 			{% elif product.group == 'homeslips' %}
 			<div class=" Portfolio-box photography">
-				<a href="img/Portfolio-pic4.jpg"><img src="{{ product.img.url }}" alt=""></a>
+				<a href="{{ product.img.url }}"><img src="{{ product.img.url }}" alt=""></a>
 				<h3>{{ product.name }}</h3>
-				<p>Цена: {{ product.price }} сом</p>
+<!--				<p>Цена: {{ product.price }} сом</p>-->
 			</div>
 			{% endif %}
 		{% endfor %}

@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}Регистрация{% endblock %}
+{% block content %}
+	<div class="container">
+		<section class="main-section contact" id="contact">
+			<div class="row">
+				<h2>Регистрация</h2>
+				<h6>Напишите ваши данные, для обратного звонка</h6>
+					{% include 'form.html' with button='Зарегистрироваться' %}
+			</div>
+		</section>
+	</div>
+
+{% endblock %}

@@ -32,13 +32,24 @@
 <!--						<li class="dribbble"><a href="#"><i class="fa fa-dribbble"></i></a></li>-->
 <!--					</ul>-->
 				</div>
-				<div class="col-lg-6 col-sm-5 wow fadeInUp delay-05s">
-					<div class="form">
-						<form action="" method="post">
-							{{ form.as_p }}
-							{% csrf_token %}
-                			<button class="btn btn-primary" type='submit'>Заказать звонок</button>
-						</form>
+					{% include 'form.html' with button='Заказать звонок' %}
+
+<!--				<div class="col-lg-6 col-sm-5 wow fadeInUp delay-05s">-->
+<!--					<div class="form">-->
+<!--						<form action="" method="post">-->
+<!--							{{ form.as_p }}-->
+<!--							{% csrf_token %}-->
+<!--                			<button class="input-btn" type='submit'>Заказать звонок</button>-->
+<!--						</form>-->
+<!--					</div>-->
+<!--				</div>-->
+			</div>
+		</section>
+	</div>
+
+{% endblock %}
+
+
 
 <!--						<div id="sendmessage">Your message has been sent. Thank you!</div>-->
 <!--						<div id="errormessage"></div>-->
@@ -62,10 +73,3 @@
 
 <!--							<div class="text-center"><button type="submit" class="input-btn">Send Message</button></div>-->
 <!--						</form>-->
-					</div>
-				</div>
-			</div>
-		</section>
-	</div>
-
-{% endblock %}
