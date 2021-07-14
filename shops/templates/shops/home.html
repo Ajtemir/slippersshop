@@ -22,7 +22,7 @@
 			{% for product in products %}
 			{% if product.group == 'sabo' %}
 			<div class=" Portfolio-box printdesign">
-				<a href="img/Portfolio-pic1.jpg"><img src="{{ product.img.url }}" alt=""></a>
+				<a href="{{ product.img.url }}"><img src="{{MEDIA_URL}}{{ product.img }}" alt=""></a>
 				<h3>{{ product.name }}</h3>
 				<p>Цена: {{ product.price }} сом</p>
 			</div>

@@ -22,6 +22,18 @@ LOGIN_REDIRECT_URL = '/'
 STATICFILES_DIRS = [
     BASE_DIR / 'static'
 ]
+CART_SESSION_ID = 'cart'
+
+# RECIPIENTS_EMAIL = ['aytush2001@mail.com']
+# DEFAULT_FROM_EMAIL = 'aytush01@mail.ru'
+# EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+EMAIL_HOST = 'smtp.mail.ru'
+EMAIL_HOST_USER = 'u_iskenderov@mail.ru'
+EMAIL_HOST_PASSWORD = 'archabeshik'
+EMAIL_PORT = 25
+EMAIL_USE_TLS = True
+EMAIL_USE_SSL = False
+
 
 
 # Quick-start development settings - unsuitable for production
@@ -45,7 +57,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'shops',  # own
+    'shops',
+    'cart'# own
 
 ]
 
@@ -72,6 +85,8 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'cart.context_processors.cart',
+                'django.template.context_processors.media',
             ],
         },
     },

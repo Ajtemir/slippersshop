@@ -1,6 +1,7 @@
 <!doctype html>
 {% load static %}
 
+
 <html>
 
 <head>
@@ -41,38 +42,65 @@
 </head>
 
 <body>
-	<header class="header" id="header">
-		<!--header-start-->
-		<div class="container">
-			<figure class="logo animated fadeInDown delay-07s">
-				<a href="#"><img src="{% static 'img/logo.png' %}" alt=""></a>
-			</figure>
-			<h1 class="animated fadeInDown delay-07s">Welcome To Knight Studios</h1>
-			<ul class="we-create animated fadeInUp delay-1s">
-				<li>We are a digital agency that loves crafting beautiful websites.</li>
-			</ul>
-			<a class="link animated fadeInUp delay-1s servicelink" href="#service">Get Started</a>
-		</div>
-	</header>
+<!--	<header class="header" id="header">-->
+<!--		&lt;!&ndash;header-start&ndash;&gt;-->
+<!--		<div class="container">-->
+<!--			<figure class="logo animated fadeInDown delay-07s">-->
+<!--				<a href="#"><img src="{% static 'img/logo.png' %}" alt=""></a>-->
+<!--			</figure>-->
+<!--			<h1 class="animated fadeInDown delay-07s">Welcome To Knight Studios</h1>-->
+<!--			<ul class="we-create animated fadeInUp delay-1s">-->
+<!--				<li>We are a digital agency that loves crafting beautiful websites.</li>-->
+<!--			</ul>-->
+<!--			<a class="link animated fadeInUp delay-1s servicelink" href="#service">Get Started</a>-->
+<!--		</div>-->
+<!--	</header>-->
 	<!--header-end-->
 
 	<nav class="main-nav-outer" id="test">
 		<!--main-nav-start-->
 		<div class="container">
 			<ul class="main-nav">
-				<li><a href="#header">Главная</a></li>
-				<li><a href="#service">Магазин</a></li>
-				<li><a href="#Portfolio">В оптом</a></li>
+				<li><a href="{% url 'index' %}">Главная</a></li>
+				<li><a href="{% url 'shop:home' %}">Магазин</a></li>
+				<li><a href="{% url 'shop:optom' %}">В оптом</a></li>
 				<li class="small-logo"><a href="#header"><img src="{% static 'img/small-logo.png' %}" alt=""></a></li>
-				<li><a href="#client">Зарегистроваться</a></li>
+<!--				<li><a href="#client">Зарегистроваться</a></li>-->
 				<li><a href="#team">Войти</a></li>
-				<li><a href="#contact">Корзинка</a></li>
+				<li>
+					{% with total_items=cart|length %}
+					{% if cart|length > 0 %}
+					<a href="{% url 'cart:cart_detail' %}">
+						Корзина : {{ total_items }} шт,сом{{ cart.get_total_price }}
+					</a>
+					{% else %}
+					<a href="{% url 'cart:cart_detail' %}">
+					Корзина пустая.
+					</a>
+					{% endif %}
+					{% endwith %}
+				</li>
 			</ul>
 			<a class="res-nav_click" href="#"><i class="fa fa-bars"></i></a>
 		</div>
 	</nav>
 	<!--main-nav-end-->
-
+<!--<div id="header">-->
+<!--<a href="#" class="logo">Мой магазин</a>-->
+<!--</div>-->
+<!--<div id="subheader">-->
+<!--<div class="cart">-->
+<!--	{% with total_items=cart|length %}-->
+<!--	{% if cart|length > 0 %}-->
+<!--	<a href="{% url 'cart:cart_detail' %}">-->
+<!--		{{ total_items }} шт , сом{{ cart.get_total_price }}-->
+<!--	</a>-->
+<!--	{% else %}-->
+<!--	Корзина пустая.-->
+<!--	{% endif %}-->
+<!--	{% endwith %}-->
+<!--</div>-->
+<!--</div>-->
 {% block content %}{% endblock %}
 
 
