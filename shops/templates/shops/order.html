@@ -1,0 +1,34 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}Заказ{% endblock %}
+{% block content %}
+	<div class="container">
+		<section class="main-section contact" id="contact">
+			<div class="row">
+				<h2>Оформить заказ</h2>
+				<h6>Напишите ваши данные, для обратного звонка</h6>
+				<div class="col-lg-6 col-sm-7 wow fadeInLeft">
+					<div class="contact-info-box address clearfix">
+						<h3><i class=" icon-map-marker"></i>Адрес:</h3>
+						<span>Дордой<br>Контейнер</span>
+					</div>
+					<div class="contact-info-box phone clearfix">
+						<h3><i class="fa fa-phone"></i>Тел:</h3>
+						<span>1-800-BOO-YAHH</span>
+					</div>
+					<div class="contact-info-box email clearfix">
+						<h3><i class="fa fa-pencil"></i>Почта:</h3>
+						<span>hello@knightstudios.com</span>
+					</div>
+					<div class="contact-info-box hours clearfix">
+						<h3><i class="fa fa-clock-o"></i>Часы:</h3>
+						<span><strong>Monday - Thursday:</strong> 10am - 6pm<br><strong>Friday:</strong> People work on Fridays now?<br><strong>Saturday - Sunday:</strong> Best not to ask.</span>
+					</div>
+
+				</div>
+					{% include 'form.html' with button='Оформить' %}
+			</div>
+		</section>
+	</div>
+
+{% endblock %}

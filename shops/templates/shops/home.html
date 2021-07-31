@@ -21,30 +21,29 @@
 		<div class="portfolioContainer wow fadeInUp delay-04s">
 			{% for product in products %}
 			{% if product.group == 'sabo' %}
+<!--			<a href="">1</a>-->
 			<div class=" Portfolio-box printdesign">
-				<a href="{{ product.img.url }}"><img src="{{MEDIA_URL}}{{ product.img }}" alt=""></a>
-				<h3>{{ product.name }}</h3>
+				<a href="{{ product.img.url }}" ><img src="{{ product.img.url }}" alt=""></a>
+				<a href="{{ product.get_absolute_url }}"><h3>{{ product.name }}</h3></a>
 				<p>Цена: {{ product.price }} сом</p>
-
 			</div>
-			<a href="{{ product.get_absolute_url }}">1</a>
 			{% elif product.group == 'sandals' %}
 			<div class="Portfolio-box webdesign">
 				<a href="{{ product.img.url }}"><img src="{{ product.img.url }}" alt=""></a>
-				<h3>{{ product.name }}</h3>
+				<a href="{{ product.get_absolute_url }}"><h3>{{ product.name }}</h3></a>
 				<p>Цена: {{ product.price }} сом</p>
 			</div>
 			{% elif product.group == 'slippers' %}
 			<div class=" Portfolio-box branding">
 				<a href="{{ product.img.url }}"><img src="{{ product.img.url }}" alt=""></a>
-				<h3>{{ product.name }}</h3>
+				<a href="{{ product.get_absolute_url }}"><h3>{{ product.name }}</h3></a>
 				<p>Цена: {{ product.price }} сом</p>
 			</div>
 			{% elif product.group == 'homeslips' %}
 			<div class=" Portfolio-box photography">
 				<a href="{{ product.img.url }}"><img src="{{ product.img.url }}" alt=""></a>
-				<h3>{{ product.name }}</h3>
-<!--				<p>Цена: {{ product.price }} сом</p>-->
+				<a href="{{ product.get_absolute_url }}"><h3>{{ product.name }}</h3></a>
+				<p>Цена: {{ product.price }} сом</p>
 			</div>
 			{% endif %}
 		{% endfor %}

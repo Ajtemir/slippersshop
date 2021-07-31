@@ -5,6 +5,22 @@
 	<div class="container">
 		<section class="main-section contact" id="contact">
 			<div class="row">
+				{% if messages %}
+					{% for message in messages %}
+						{% if message.level == DEFAULT_MESSAGE_LEVELS.SUCCESS %}<div class="alert alert-success alert-dismissible show" role="alert">
+					  <h4 class="alert-heading">Заявка получена !!!</h4>
+						<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+							<span aria-hidden="true">&times;</span>
+						  </button>
+<!--					  <p>Aww yeah, you successfully read this important alert message. This example text is going to run a bit longer so that you can see how spacing within an alert works with this kind of content.</p>-->
+<!--					  <hr>-->
+					  <p class="mb-0">{{ message }}</p>
+
+					</div> {% endif %}
+
+
+					{% endfor %}
+				{% endif %}
 				<h2>Оптом</h2>
 				<h6>Напишите ваши данные, для обратного звонка</h6>
 				<div class="col-lg-6 col-sm-7 wow fadeInLeft">

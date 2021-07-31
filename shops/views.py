@@ -1,17 +1,23 @@
 from django.http import HttpResponse
 from django.shortcuts import render, get_object_or_404, redirect
 from django.core.mail import send_mail, BadHeaderError
+
+from cart.cart import Cart
 from cart.forms import CartAddProductForm
-from shops.forms import ContactForm
+from main.settings.production import RECIPIENTS_EMAIL, DEFAULT_FROM_EMAIL
+from shops.forms import ContactForm, OrderForm
 from shops.models import Product
+from django.contrib import messages
 
 
 def index(request):
-    return render(request, 'index.html')
+    return redirect('shop:home')
+
 
 def home(request):
     products = Product.objects.filter(availability=True).all()
     return render(request, 'shops/home.html', {'products': products})
+
 
 def optom(request):
     if request.method == 'GET':
@@ -22,23 +28,44 @@ def optom(request):
             name = form.cleaned_data['name']
             number = form.cleaned_data['phone']
             try:
-                send_mail(f"{name},{number},", 'defog', 'u_iskenderov@mail.ru', ['aytush2001@gmail.com'],
+                send_mail('Оптом', f"Имя: {name},\nНомер: {number}", DEFAULT_FROM_EMAIL, RECIPIENTS_EMAIL,
                           fail_silently=False)
+                messages.success(request, 'Ожидайте наш звонок!!!')
             except BadHeaderError:
                 return HttpResponse('Ошибка в теме письма.')
-            return HttpResponse('Приняли! Спасибо за вашу заявку.')
+            # return HttpResponse('Приняли! Спасибо за вашу заявку.')
+            return redirect('shop:optom')
     else:
         return HttpResponse('Неверный запрос.')
     # return render(request, "index.html", {'form': form})
     return render(request, 'shops/optom.html', {'form': form})
 
-def success_view(request):
-    return HttpResponse('Приняли! Спасибо за вашу заявку.')
 
+def order(request):
+    cart = Cart(request)
+    for item in cart:
+        item['update_quantity_form'] = CartAddProductForm(initial={'quantity': item['quantity'],
+                                                                   'update': True})
+    text = str()
+    for item in cart:
+        text += f"Название:{item['product']} => Количество:{item['quantity']}\n"
+    text += f'Общая сумма:{Cart.get_total_price(self=Cart(request))} сом'
 
+    form = OrderForm(initial={'text': text})
+    if request.method == 'POST':
+        form = OrderForm(request.POST)
+        if form.is_valid():
+            text = form.cleaned_data.get('text')
+            name = form.cleaned_data.get('name')
+            address = form.cleaned_data.get('address')
+            phone = form.cleaned_data.get('phone')
+            subject = 'Заказ'
+            message = f'\n{text}\nИмя:{name}\nАдрес:{address}\nНомер:{phone}'
+            send_mail(f"{subject}", message, 'u_iskenderov@mail.ru', ['aytush2001@gmail.com'], fail_silently=False)
+        return redirect('cart:cart_detail')
+    return render(request, 'shops/order.html', {'form': form})
 
-
-        # EMAIL_HOST = 'aytush2001@gmail.com'
+    # EMAIL_HOST = 'aytush2001@gmail.com'
     # EMAIL_HOST_USER = 'aytush2001@gmail.com'
     # EMAIL_HOST_PASSWORD = 'archabeshik'
     # EMAIL_PORT = 587
@@ -56,6 +83,7 @@ def success_view(request):
     #     sent = True
     #     else:
     #     form = EmailPostForm()
+
 
 def product_detail(request, id):
     product = get_object_or_404(Product, id=id, availability=True)

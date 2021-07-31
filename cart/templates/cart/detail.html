@@ -7,9 +7,13 @@
 
 {% block content %}
   <h1>Корзина покупок</h1>
-  <table class="cart">
+  <p class="text-right">
+    <a href="{% url 'shop:home' %}" class="button light">В магазин</a>
+    <a href="{% url 'shop:order' %}" class="btn input-btn" >Оформить заказ</a>
+  </p>
+  <table class="table table-bordered table-hover table-striped">
     <thead>
-      <tr>
+      <tr class="bg-red text-black">
         <th>Картинка</th>
         <th>Товар</th>
         <th>Обновить кол-во</th>
@@ -25,7 +29,7 @@
           <tr>
             <td>
               <a href="{{ product.get_absolute_url }}">
-                <img src="{% if product.image %}{{ product.image.url }}{% else %}{% static 'img/no_image.png' %}{% endif %}">
+                <img src="{% if product.img %}{{ product.img.url }}{% else %}{% static 'img/no_image.png' %}{% endif %}" height="150" width="150">
               </a>
             </td>
             <td>{{ product.name }}</td>
@@ -41,20 +45,18 @@
             <td>
               {{ item.quantity }}
             </td>
-            <td class="num">${{ item.price }}</td>
-            <td class="num">${{ item.total_price }}</td>
+            <td class="num">Cом {{ item.price }}</td>
+            <td class="num">Сом {{ item.total_price }}</td>
           </tr>
         {% endwith %}
       {% endfor %}
       <tr class="total">
         <td>Всего</td>
-        <td colspan="4"></td>
-        <td class="num">${{ cart.get_total_price }}</td>
+        <td colspan="5"></td>
+        <td class="num">сом {{ cart.get_total_price }}</td>
+
       </tr>
     </tbody>
   </table>
-  <p class="text-right">
-    <a href="{% url 'shop:home' %}" class="button light">В магазин</a>
-    <a href="#" class="button">Оформить заказ</a>
-  </p>
+
 {% endblock %}

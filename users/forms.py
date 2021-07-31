@@ -46,22 +46,22 @@ class UserRegistrationForm(forms.ModelForm):
         'placeholder': 'Напишите вашу фамилию'
     }))
 
-    phone = forms.CharField(label='Номер', widget=forms.TextInput(attrs={
+    email = forms.EmailField(label='Почта', widget=forms.TextInput(attrs={
         'class': 'form-control input-text',
-        'placeholder': 'Напишите ваш номер'
+        'placeholder': 'Напишите вашу почту'
     }))
 
-    password = forms.CharField( label='Пароль', widget=forms.PasswordInput(attrs={
+    password = forms.CharField(label='Пароль', widget=forms.PasswordInput(attrs={
         'class': 'form-control input-text',
         'placeholder': 'Напишите ваш пароль'
     }))
-    password2 = forms.CharField( label='Пароль', widget=forms.PasswordInput(attrs={
+    password2 = forms.CharField(label='Пароль', widget=forms.PasswordInput(attrs={
         'class': 'form-control input-text',
         'placeholder': 'Подтвердите ваш пароль'
     }))
     class Meta:
         model = User
-        fields = ('username',)
+        fields = ('username', 'email', 'first_name', 'last_name')
 
     def clean_password2(self):
         data = self.cleaned_data

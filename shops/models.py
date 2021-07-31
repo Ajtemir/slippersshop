@@ -1,6 +1,6 @@
 from django.db import models
 from django.urls import reverse
-
+from cloudinary.models import CloudinaryField
 
 class Product(models.Model):
     SABO = 'sabo'
@@ -19,7 +19,7 @@ class Product(models.Model):
     price = models.DecimalField(max_digits=10, decimal_places=2, verbose_name='Цена')
     availability = models.BooleanField(verbose_name='Наличие')
     group = models.CharField(max_length=20, choices=CHOICE_GROUP, default=SLIPPERS, verbose_name='Категории')
-    img = models.ImageField(default='no_image.jpg', upload_to='images', verbose_name='Фото')
+    img = CloudinaryField('image')
     created = models.DateTimeField(auto_now_add=True, verbose_name='Создано')
     uploaded = models.DateTimeField(auto_now=True, verbose_name='Обновлено')
 
