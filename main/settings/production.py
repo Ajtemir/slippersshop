@@ -64,7 +64,7 @@ SECRET_KEY = SECRET_KEY
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = ['shopsearch.herokuapp.com', 'localhost:8000', '127.0.0.1']
+ALLOWED_HOSTS = ['slippersshop.herokuapp.com', 'localhost:8000', '127.0.0.1']
 
 
 # Application definition
