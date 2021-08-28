@@ -13,7 +13,8 @@ import os
 from pathlib import Path
 import cloudinary
 # from dotenv import load_dotenv
-
+#
+# load_dotenv()
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent.parent
@@ -27,10 +28,7 @@ STATICFILES_DIRS = [
 ]
 CART_SESSION_ID = 'cart'
 MESSAGE_STORAGE = 'django.contrib.messages.storage.cookie.CookieStorage'
-# CLOUD_NAME = os.environ.get('CLOUD_NAME')
-# API_KEY = os.environ.get('API_KEY')
-# API_SECRET = os.environ.get('API_SECRET')
-# CLOUD_NAME = load_dotenv('CLOUD_NAME')
+
 
 # load_dotenv(BASE_DIR/'.env')
 CLOUD_NAME = os.getenv('CLOUD_NAME')
@@ -66,7 +64,7 @@ SECRET_KEY = SECRET_KEY
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = ['slippersshop.herokuapp.com', 'localhost:8000']
+ALLOWED_HOSTS = ['shopsearch.herokuapp.com', 'localhost:8000', '127.0.0.1']
 
 
 # Application definition

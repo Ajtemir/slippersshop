@@ -6,7 +6,8 @@ urlpatterns = [
     path('optom/', views.optom, name='optom'),
     path('<int:id>/', views.product_detail,
          name='detail'),
-    path('order/', views.order, name='order')
+    path('order/', views.order, name='order'),
+    path('search/', views.search, name='search'),
 
 
 ]

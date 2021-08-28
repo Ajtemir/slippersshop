@@ -5,7 +5,7 @@ from django.core.mail import send_mail, BadHeaderError
 from cart.cart import Cart
 from cart.forms import CartAddProductForm
 from main.settings.production import RECIPIENTS_EMAIL, DEFAULT_FROM_EMAIL
-from shops.forms import ContactForm, OrderForm
+from shops.forms import ContactForm, OrderForm, SearchForm
 from shops.models import Product
 from django.contrib import messages
 
@@ -90,3 +90,17 @@ def product_detail(request, id):
     cart_product_form = CartAddProductForm()
     return render(request, 'shops/detail.html', {'product': product,
                                                  'cart_product_form': cart_product_form})
+
+def search(request):
+    form = SearchForm()
+    if request.method == 'POST':
+        form = SearchForm(request.POST)
+        if form.is_valid():
+            name = form.cleaned_data.get('name')
+            products = Product.objects.filter(name__icontains=name)
+            return render(request, 'shops/search.html',{'form':form,
+                                                'products':products})
+    products = Product.objects.filter(availability=True).all()
+
+    return render(request, 'shops/search.html',{'form':form,
+                                                'products':products})

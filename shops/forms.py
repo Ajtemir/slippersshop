@@ -29,3 +29,9 @@ class OrderForm(forms.Form):
         'placeholder': 'Напишите ваш номер'
     }))
 
+class SearchForm(forms.Form):
+    name = forms.CharField(max_length=100, required=True, label='Поиск по названию', widget=forms.TextInput(attrs={
+        'class': 'form-control input-text',
+        'placeholder': 'Напишите название товара...'
+    }))
+
