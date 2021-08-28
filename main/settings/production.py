@@ -81,7 +81,7 @@ INSTALLED_APPS = [
     'cloudinary_storage',
     'cloudinary',
     'shops',
-    'cart',  # own
+    'cart',
     'users'
 
 ]
